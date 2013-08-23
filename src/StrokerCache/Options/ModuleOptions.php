@@ -72,6 +72,6 @@ class ModuleOptions extends AbstractOptions
      */
     public function getCacheResponse()
     {
-        return $this->cacheResponse;
+        return $this->cacheResponse === true;
     }
 }
