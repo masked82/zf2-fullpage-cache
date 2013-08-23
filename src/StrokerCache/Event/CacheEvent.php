@@ -30,9 +30,11 @@ class CacheEvent extends Event
 
     /**
      * @param string $cacheKey
+     * @return CacheEvent
      */
     public function setCacheKey($cacheKey)
     {
         $this->cacheKey = $cacheKey;
+        return $this;
     }
 }
