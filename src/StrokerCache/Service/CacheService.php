@@ -103,13 +103,17 @@ class CacheService implements EventManagerAwareInterface
      */
     protected function shouldCacheRequest(MvcEvent $e)
     {
+        $shouldCacheRequest = false;
         /** @var $strategy \StrokerCache\Strategy\StrategyInterface */
         foreach ($this->getStrategies() as $strategy) {
-            if ($strategy->shouldCache($e)) {
-                return true;
+            if ($strategy instanceof StrategyInterface 
+                && $strategy->shouldCache($e)
+            ) {
+                $shouldCacheRequest = true;
+                break;
             }
         }
-        return false;
+        return $shouldCacheRequest;
     }
 
     /**
